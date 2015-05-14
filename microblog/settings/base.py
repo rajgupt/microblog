@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+from multiprocessing import managers
 
 # here() gives us file paths from the root of the system to the directory
 # holding the current file.
@@ -24,7 +25,9 @@ root = lambda * x: os.path.join(os.path.abspath(PROJECT_ROOT), *x)
 
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
+MEDIA_ROOT = os.path.join(PROJECT_ROOT,"uploads")
+STATIC_ROOT = os.path.join(PROJECT_ROOT,"templates")
+STATICFILES_DIRS = os.path.join(PROJECT_ROOT,"assets")
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
@@ -35,12 +38,15 @@ SECRET_KEY = 'i)xs6dmtq&n(7zrnv20=-hql03gml)x65a6l-gpv!#!n3#trj7'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+ADMINS = (('RAJAT','rajat.y6@gmail.com'))
+MANAGERS = ADMINS
+
 ALLOWED_HOSTS = []
 
 
 # Application definition
 
-INSTALLED_APPS = (
+DJANGO_APPS = (
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -48,6 +54,10 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
 )
+
+LOCAL_APPS = ()
+THIRD_PARTY_APPS = ()
+INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS + THIRD_PARTY_APPS
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
